@@ -22,7 +22,7 @@ namespace Hogskolan_Sarob
         private ListBox listBox1;
         private Button button1;
         private TextBox personalLararLagsIDText;
-        private string S;
+      ///  private string S;
 
         public HogskolanGUI()
         {
@@ -38,34 +38,34 @@ namespace Hogskolan_Sarob
             this.button1 = new System.Windows.Forms.Button();
             this.personalNamnText.Location = new System.Drawing.Point(169, 26);
             this.personalNamnText.Size = new System.Drawing.Size(100, 20);
-            this.personalNamnText.Text = "Bracket";
+            this.personalNamnText.Text = "Lärarnamn";
             ///
             this.personalPersonalIDText.Location = new System.Drawing.Point(169, 57);
             this.personalPersonalIDText.Size = new System.Drawing.Size(100, 20);
-            this.personalPersonalIDText.Text = "4343";
+            this.personalPersonalIDText.Text = "PersonalID";
             ///
-            this.personalPersonnummerText.Location = new System.Drawing.Point(169, 26);
+            this.personalPersonnummerText.Location = new System.Drawing.Point(169, 80);
             this.personalPersonnummerText.Size = new System.Drawing.Size(100, 20);
-            this.personalPersonnummerText.Text = "Bracket";
+            this.personalPersonnummerText.Text = "Personnummer";
             ///
-            this.personalEmailText.Location = new System.Drawing.Point(169, 26);
+            this.personalEmailText.Location = new System.Drawing.Point(169, 120);
             this.personalEmailText.Size = new System.Drawing.Size(100, 20);
-            this.personalEmailText.Text = "Bracket";
+            this.personalEmailText.Text = "Email";
             ///
-            this.personalTelNrText.Location = new System.Drawing.Point(169, 26);
+            this.personalTelNrText.Location = new System.Drawing.Point(169, 150);
             this.personalTelNrText.Size = new System.Drawing.Size(100, 20);
-            this.personalTelNrText.Text = "Bracket";
+            this.personalTelNrText.Text = "Telefonnummer";
             ///
-            this.personalLararLagsIDText.Location = new System.Drawing.Point(169, 26);
+         /*   this.personalLararLagsIDText.Location = new System.Drawing.Point(169, 170);
             this.personalLararLagsIDText.Size = new System.Drawing.Size(100, 20);
-            this.personalLararLagsIDText.Text = "Bracket";
+            this.personalLararLagsIDText.Text = "LärarlagsID"; */
             ///
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(12, 12);
-            this.listBox1.Size = new System.Drawing.Size(120, 95);
-            this.button1.Location = new System.Drawing.Point(180, 83);
+            this.listBox1.Size = new System.Drawing.Size(120, 200);
+            this.button1.Location = new System.Drawing.Point(180, 210);
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.Text = "Add New Item";
+            this.button1.Text = "Lägg till";
             this.button1.Click += new System.EventHandler(this.button1_Click);
             this.ClientSize = new System.Drawing.Size(292, 266);
             this.Controls.Add(this.button1);
@@ -109,7 +109,7 @@ namespace Hogskolan_Sarob
             lararLista.AllowEdit = false;
 
 
-            lararLista.Add(new Larare("Rasmus", "123", "198911224130", "Rasmus@HS.se", "0704554488", "0"));
+        //    lararLista.Add(new Larare("Rasmus", "123", "198911224130", "Rasmus@HS.se", "0704554488", "0"));
 
         }
 
@@ -117,7 +117,7 @@ namespace Hogskolan_Sarob
         void lararLista_AddingNew(object sender, AddingNewEventArgs e)
         {
             e.NewObject = new Larare(personalNamnText.Text, int.Parse(personalPersonalIDText.Text), long.Parse(personalPersonnummerText.Text),
-                personalEmailText.Text, int.Parse(personalLararLagsIDText.Text)
+                personalEmailText.Text/*, int.Parse(personalLararLagsIDText.Text*/
                 ///string Namn, int PersonalID, long PersonNummer, string Email, int TelNr, int LararlagsID
                 );
         }
@@ -126,23 +126,24 @@ namespace Hogskolan_Sarob
         // spaces. In that case cancel the add.
         private void button1_Click(object sender, EventArgs e)
         {
-            Larare newPart = lararLista.AddNew();
-
-
+            Larare larare = lararLista.AddNew();
 
             personalNamnText.Text = "Ange namn";
-            personalPersonalIDText.Text =  = int.Parse("Ange personalID"); 
-            personalPersonnummerText.Text = "Ange personnummer";
+           /* personalPersonalIDText.Text */ int.Parse(personalPersonalIDText.Text);
+
+            int.Parse(personalPersonnummerText.Text); 
             personalEmailText.Text = "Ange email";
-            personalTelNrText.Text = "Ange telefonnummer";
+            int.Parse(personalTelNrText.Text); 
 
 
         }
 
         void lararLista_ListChanged(object sender, ListChangedEventArgs e)
         {
-            MessageBox.Show(e.ListChangedType.ToString());
+           MessageBox.Show(e.ListChangedType.ToString());
+            
         }
+
 
     }
 }

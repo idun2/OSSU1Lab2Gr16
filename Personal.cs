@@ -15,7 +15,7 @@ namespace Hogskolan_Sarob
         private string email;
         private int telNr;
 
-        private int lararLagsID;
+      
         private string taBort;
 
         public string Namn
@@ -44,11 +44,7 @@ namespace Hogskolan_Sarob
             set { telNr = value; }
         }
 
-        public int LararLagsID
-        {
-            get { return lararLagsID; }
-            set { lararLagsID = value; }
-        }
+     
         public string TaBort
         {
             get { return taBort; }
@@ -57,6 +53,11 @@ namespace Hogskolan_Sarob
 
 
         public void laggTillLarare(string Namn, int PersonalID, long Personnummer, string Email, int TelNr, int LararLagsID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void laggTillLarare(string Namn, int PersonalID, long Personnummer, string Email, int TelNr)
         {
             throw new NotImplementedException();
         }
