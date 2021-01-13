@@ -20,7 +20,7 @@ namespace Hogskolan_Sarob
         private TextBox personalEmailText;
         private TextBox personalTelNrText;
         private ListBox listBox1;
-        private Button button1;
+        private Button button1; ///skapar en ny knapp
         private TextBox personalLararLagsIDText;
         private Button button2;
         ///  private string S;
@@ -37,7 +37,7 @@ namespace Hogskolan_Sarob
             this.personalLararLagsIDText = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button(); //skapar en ny instans av knappen
             this.personalNamnText.Location = new System.Drawing.Point(169, 26);
             this.personalNamnText.Size = new System.Drawing.Size(100, 20);
             this.personalNamnText.Text = "Lärarnamn";
@@ -67,8 +67,8 @@ namespace Hogskolan_Sarob
             this.listBox1.Size = new System.Drawing.Size(120, 300);
             this.button1.Location = new System.Drawing.Point(180, 210);
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.Text = "Lägg till";
-            this.button1.Text = "Ta bort";
+            this.button1.Text = "Lägg till";///hanterar den nya knappen
+            this.button2.Text = "Ta bort"; 
             this.button1.Location = new System.Drawing.Point(180, 250);
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.Click += new System.EventHandler(this.button1_Click);
