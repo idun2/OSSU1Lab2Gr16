@@ -22,7 +22,8 @@ namespace Hogskolan_Sarob
         private ListBox listBox1;
         private Button button1;
         private TextBox personalLararLagsIDText;
-      ///  private string S;
+        private Button button2;
+        ///  private string S;
 
         public HogskolanGUI()
         {
@@ -36,6 +37,7 @@ namespace Hogskolan_Sarob
             this.personalLararLagsIDText = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.personalNamnText.Location = new System.Drawing.Point(169, 26);
             this.personalNamnText.Size = new System.Drawing.Size(100, 20);
             this.personalNamnText.Text = "Lärarnamn";
@@ -62,13 +64,19 @@ namespace Hogskolan_Sarob
             ///
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(12, 12);
-            this.listBox1.Size = new System.Drawing.Size(120, 200);
+            this.listBox1.Size = new System.Drawing.Size(120, 300);
             this.button1.Location = new System.Drawing.Point(180, 210);
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.Text = "Lägg till";
+            this.button1.Text = "Ta bort";
+            this.button1.Location = new System.Drawing.Point(180, 250);
+            this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button2.Click += new System.EventHandler(this.Delete_Click);
             this.ClientSize = new System.Drawing.Size(292, 266);
+            this.button2.Click += new System.EventHandler(Delete_Click);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.personalNamnText);
             this.Controls.Add(this.personalPersonalIDText);
@@ -84,17 +92,18 @@ namespace Hogskolan_Sarob
 
         void Form1_Load(object sender, EventArgs e)
         {
-            InitializeListOfParts();
+            InitializeLararLista();
             listBox1.DataSource = lararLista;
             listBox1.DisplayMember = "Lägg till/Ta Bort Lärare";
             lararLista.AddingNew += new AddingNewEventHandler(lararLista_AddingNew);
             lararLista.ListChanged += new ListChangedEventHandler(lararLista_ListChanged);
+            lararLista.RemoveLarare += new AddingNewEventHandler(Delete_Click);
         }
 
 
         // Declare a new BindingListOfT with the Part business object.
         BindingList<Larare> lararLista;
-        private void InitializeListOfParts()
+        private void InitializeLararLista()
         {
 
             lararLista = new BindingList<Larare>();
@@ -109,7 +118,7 @@ namespace Hogskolan_Sarob
             lararLista.AllowEdit = false;
 
 
-        //    lararLista.Add(new Larare("Rasmus", "123", "198911224130", "Rasmus@HS.se", "0704554488"));
+            lararLista.Add(new Larare("Rasmus", "123", "198911224130", "Rasmus@HS.se", "0704554488"));
 
         }
 
@@ -128,22 +137,32 @@ namespace Hogskolan_Sarob
         {
             Larare larare = lararLista.AddNew();
 
-            personalNamnText.Text = "" ;
-           /* personalPersonalIDText.Text */ int.Parse(personalPersonalIDText.Text);
+            personalNamnText.Text = "";
+            /* personalPersonalIDText.Text */
+            int.Parse(personalPersonalIDText.Text);
 
-            long.Parse(personalPersonnummerText.Text); 
+            long.Parse(personalPersonnummerText.Text);
             personalEmailText.Text = "";
-            int.Parse(personalTelNrText.Text); 
+            int.Parse(personalTelNrText.Text);
 
 
         }
 
         void lararLista_ListChanged(object sender, ListChangedEventArgs e)
         {
-           MessageBox.Show(e.ListChangedType.ToString());
-            
+            MessageBox.Show(e.ListChangedType.ToString());
+
         }
 
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            // Get all selected items indices first
+            var selected = lararLista.selected;
+
+            // Remove every selected item using it's index
+            foreach (int i in selected)
+                lararLista.Items.RemoveAt(i);
+        }
 
     }
 }
