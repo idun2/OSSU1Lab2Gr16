@@ -20,7 +20,7 @@ namespace Hogskolan_Sarob
         private TextBox personalEmailText;
         private TextBox personalTelNrText;
         private ListBox listBox1;
-        private Button button1; ///skapar en ny knapp
+        private Button button1;
         private TextBox personalLararLagsIDText;
         private Button button2;
         ///  private string S;
@@ -37,7 +37,7 @@ namespace Hogskolan_Sarob
             this.personalLararLagsIDText = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button(); //skapar en ny instans av knappen
+            this.button2 = new System.Windows.Forms.Button();
             this.personalNamnText.Location = new System.Drawing.Point(169, 26);
             this.personalNamnText.Size = new System.Drawing.Size(100, 20);
             this.personalNamnText.Text = "Lärarnamn";
@@ -67,10 +67,12 @@ namespace Hogskolan_Sarob
             this.listBox1.Size = new System.Drawing.Size(120, 300);
             this.button1.Location = new System.Drawing.Point(180, 210);
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.Text = "Lägg till";///hanterar den nya knappen
-            this.button2.Text = "Ta bort"; 
-            this.button1.Location = new System.Drawing.Point(180, 250);
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Text = "Lägg till";
+            this.button2.Text = "Ta bort";
+            this.button2.Location = new System.Drawing.Point(180, 250);
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            ///this.button1.Location = new System.Drawing.Point(180, 250);
+            ///this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.Click += new System.EventHandler(this.button1_Click);
             this.button2.Click += new System.EventHandler(this.Delete_Click);
             this.ClientSize = new System.Drawing.Size(292, 266);
@@ -97,7 +99,7 @@ namespace Hogskolan_Sarob
             listBox1.DisplayMember = "Lägg till/Ta Bort Lärare";
             lararLista.AddingNew += new AddingNewEventHandler(lararLista_AddingNew);
             lararLista.ListChanged += new ListChangedEventHandler(lararLista_ListChanged);
-            lararLista.RemoveLarare += new AddingNewEventHandler(Delete_Click);
+           // lararLista.RemoveLarare += new AddingNewEventHandler(Delete_Click);
         }
 
 
@@ -118,7 +120,7 @@ namespace Hogskolan_Sarob
             lararLista.AllowEdit = false;
 
 
-            lararLista.Add(new Larare("Rasmus", "123", "198911224130", "Rasmus@HS.se", "0704554488"));
+         //   lararLista.Add(new Larare("Rasmus", "123", "198911224130", "Rasmus@HS.se", "0704554488"));
 
         }
 
@@ -126,8 +128,7 @@ namespace Hogskolan_Sarob
         void lararLista_AddingNew(object sender, AddingNewEventArgs e)
         {
             e.NewObject = new Larare(personalNamnText.Text, int.Parse(personalPersonalIDText.Text), long.Parse(personalPersonnummerText.Text),
-                personalEmailText.Text, int.Parse(personalTelNrText.Text));/*, int.Parse(personalLararLagsIDText.Text*/
-            ///string Namn, int PersonalID, long PersonNummer, string Email, int TelNr, int LararlagsID
+                personalEmailText.Text, int.Parse(personalTelNrText.Text));
 
         }
 
@@ -156,13 +157,8 @@ namespace Hogskolan_Sarob
 
         private void Delete_Click(object sender, EventArgs e)
         {
-            // Get all selected items indices first
-            var selected = lararLista.selected;
+            lararLista.Clear();
 
-            // Remove every selected item using it's index
-            foreach (int i in selected)
-                lararLista.Items.RemoveAt(i);
         }
-
     }
 }
