@@ -109,7 +109,7 @@ namespace Hogskolan_Sarob
             lararLista.AllowEdit = false;
 
 
-        //    lararLista.Add(new Larare("Rasmus", "123", "198911224130", "Rasmus@HS.se", "0704554488", "0"));
+        //    lararLista.Add(new Larare("Rasmus", "123", "198911224130", "Rasmus@HS.se", "0704554488"));
 
         }
 
@@ -117,9 +117,9 @@ namespace Hogskolan_Sarob
         void lararLista_AddingNew(object sender, AddingNewEventArgs e)
         {
             e.NewObject = new Larare(personalNamnText.Text, int.Parse(personalPersonalIDText.Text), long.Parse(personalPersonnummerText.Text),
-                personalEmailText.Text/*, int.Parse(personalLararLagsIDText.Text*/
-                ///string Namn, int PersonalID, long PersonNummer, string Email, int TelNr, int LararlagsID
-                );
+                personalEmailText.Text, int.Parse(personalTelNrText.Text));/*, int.Parse(personalLararLagsIDText.Text*/
+            ///string Namn, int PersonalID, long PersonNummer, string Email, int TelNr, int LararlagsID
+
         }
 
         // Add the new part unless the part number contains
@@ -128,11 +128,11 @@ namespace Hogskolan_Sarob
         {
             Larare larare = lararLista.AddNew();
 
-            personalNamnText.Text = "Ange namn";
+            personalNamnText.Text = "" ;
            /* personalPersonalIDText.Text */ int.Parse(personalPersonalIDText.Text);
 
-            int.Parse(personalPersonnummerText.Text); 
-            personalEmailText.Text = "Ange email";
+            long.Parse(personalPersonnummerText.Text); 
+            personalEmailText.Text = "";
             int.Parse(personalTelNrText.Text); 
 
 
