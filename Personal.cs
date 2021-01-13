@@ -1,70 +1,90 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Hogskolan_Sarob
+namespace Objektorientering
 {
-    class Personal: IPersonal
+    interface IPersonal
     {
+        string Namn { get; set; }
+        int PersonalID { get; set; }
+        long PersonNummer { get; set; }
+        string Email { get; set; }
+        int TelNr { get; set; }
+        bool AdminRights { get; set; }
+        int LararLagsID { get; set; }
+        string TaBort { get; set; }
+
+        void laggTillLarare(string Namn, int PersonalID, long Personnummer, string Email, int TelNr, bool AdminRights, int LararLagsID);
+
+        void listaLararare();
+
+    }
+
+    ///Personal
+
+    class Personal : IPersonal
+    {
+        #region Variabler 
+
         private string namn;
         private int personalID;
-
-        private long personNnummer;
+        private long personNummer;
         private string email;
         private int telNr;
-
+        private bool adminRights;
         private int lararLagsID;
         private string taBort;
 
-        public string Namn
-        {
-            get { return namn; }
-            set { namn = value; }
-        }
-        public int PersonalID
-        {
-            get { return personalID; }
-            set { personalID = value; }
-        }
-        public long PersonNummer
-        {
-            get { return personNnummer; }
-            set { personNnummer = value; }
-        }
-        public string Email
-        {
-            get { return email; }
-            set { email = value; }
-        }
-        public int TelNr
-        {
-            get { return telNr; }
-            set { telNr = value; }
-        }
+        public string Namn { get; set; }
+        public int PersonalID { get; set; }
+        public long PersonNummer { get; set; }
+        public string Email { get; set; }
+        public int TelNr { get; set; }
+        public bool AdminRights { get; set; }
+        public int LararLagsID { get; set; }
+        public string TaBort { get; set; }
 
-        public int LararLagsID
-        {
-            get { return lararLagsID; }
-            set { lararLagsID = value; }
-        }
-        public string TaBort
-        {
-            get { return taBort; }
-            set { taBort = value; }
-        }
+        #endregion
 
+        List<Larare> Teacher = new List<Larare>();
 
-        public void laggTillLarare(string Namn, int PersonalID, long Personnummer, string Email, int TelNr, int LararLagsID)
+        #region Metoder
+
+        public void laggTillLarare(string Namn, int PersonalID, long PersonNummer, string Email, int TelNr, bool AdminRights, int LararLagsID)
         {
-            throw new NotImplementedException();
+            Teacher.Add(new Larare(Namn, PersonalID, PersonNummer, Email, TelNr, AdminRights, LararLagsID));
         }
 
         public void listaLararare()
         {
-            throw new NotImplementedException();
-
+            foreach (Larare Larare in Teacher)
+            {
+                Console.WriteLine($"{ Larare.Namn }\t{ Larare.PersonalID }\t{ Larare.PersonNummer } ");
+            }
         }
+
+
+
+        public void taBortLarare()
+        {
+            listaLararare();
+
+            Console.WriteLine("Vilken lärare vill du ta bort?");
+
+            string TaBort = Console.ReadLine();
+
+            Larare TaBortL = (Larare)Convert.ChangeType(TaBort, typeof(Larare));
+
+            Teacher.Remove(TaBortL);
+        }
+
+        #endregion
+
     }
+
+
+
+
+
 }
