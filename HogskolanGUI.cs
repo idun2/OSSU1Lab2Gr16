@@ -23,7 +23,7 @@ namespace Hogskolan_Sarob
         private Button button1;
         private TextBox personalLararLagsIDText;
         private Button button2;
-        ///  private string S;
+    
 
         public HogskolanGUI()
         {
@@ -39,11 +39,11 @@ namespace Hogskolan_Sarob
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.personalNamnText.Location = new System.Drawing.Point(169, 26);
-            this.personalNamnText.Size = new System.Drawing.Size(100, 20);
+            this.personalNamnText.Size = new System.Drawing.Size(500, 20);
             this.personalNamnText.Text = "Lärarnamn";
             ///
             this.personalPersonalIDText.Location = new System.Drawing.Point(169, 57);
-            this.personalPersonalIDText.Size = new System.Drawing.Size(100, 20);
+            this.personalPersonalIDText.Size = new System.Drawing.Size(200, 20);
             this.personalPersonalIDText.Text = "PersonalID";
             ///
             this.personalPersonnummerText.Location = new System.Drawing.Point(169, 80);
@@ -127,8 +127,8 @@ namespace Hogskolan_Sarob
 
         void lararLista_AddingNew(object sender, AddingNewEventArgs e)
         {
-            e.NewObject = new Larare(personalNamnText.Text, int.Parse(personalPersonalIDText.Text), long.Parse(personalPersonnummerText.Text),
-                personalEmailText.Text, int.Parse(personalTelNrText.Text));
+            e.NewObject = new Larare(personalNamnText, int.Parse(personalPersonalIDText.Text), long.Parse(personalPersonnummerText.Text),
+                personalEmailText, int.Parse(personalTelNrText.Text));
 
         }
 
@@ -138,12 +138,16 @@ namespace Hogskolan_Sarob
         {
             Larare larare = lararLista.AddNew();
 
-            personalNamnText.Text = "";
-            /* personalPersonalIDText.Text */
+            personalNamnText.Text = personalNamnText.ToString();
+
+            //  personalNamnText.Text = personalNamnText.ToString();
+
+            ///ToString(personalNamnText) = "hej";
+
             int.Parse(personalPersonalIDText.Text);
 
             long.Parse(personalPersonnummerText.Text);
-            personalEmailText.Text = "";
+            personalEmailText.Text = personalEmailText.ToString();
             int.Parse(personalTelNrText.Text);
 
 
