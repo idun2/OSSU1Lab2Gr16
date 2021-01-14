@@ -99,11 +99,29 @@ namespace Hogskolan_Sarob
             listBox1.DisplayMember = "Lägg till/Ta Bort Lärare";
             lararLista.AddingNew += new AddingNewEventHandler(lararLista_AddingNew);
             lararLista.ListChanged += new ListChangedEventHandler(lararLista_ListChanged);
-           // lararLista.RemoveLarare += new AddingNewEventHandler(Delete_Click);
+          
         }
 
+        #region childform
 
-        // Declare a new BindingListOfT with the Part business object.
+        /// <summary>
+        /// Gör detta till en childform
+        /// </summary>
+        private static HogskolanGUI m_SChildform;
+        public static HogskolanGUI GetChildInstance()
+        {
+            if (m_SChildform == null) //if not created yet, Create an instance
+
+                m_SChildform = new HogskolanGUI();
+            return m_SChildform;  //just created or created earlier.Return it
+
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Deklarerar en ny bindinglist
+        /// </summary>
         BindingList<Larare> lararLista;
         private void InitializeLararLista()
         {
@@ -118,13 +136,15 @@ namespace Hogskolan_Sarob
 
 
             lararLista.AllowEdit = false;
-
-
-         //   lararLista.Add(new Larare("Rasmus", "123", "198911224130", "Rasmus@HS.se", "0704554488"));
-
         }
 
+        #region Lägg till/ta bort
 
+        /// <summary>
+        /// Skapar nya objekt av typen Larare
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void lararLista_AddingNew(object sender, AddingNewEventArgs e)
         {
             e.NewObject = new Larare(personalNamnText, int.Parse(personalPersonalIDText.Text), long.Parse(personalPersonnummerText.Text),
@@ -132,17 +152,18 @@ namespace Hogskolan_Sarob
 
         }
 
-        // Add the new part unless the part number contains
-        // spaces. In that case cancel the add.
+        /// <summary>
+        /// Lägger till de attribut som finns i objektet
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             Larare larare = lararLista.AddNew();
 
             personalNamnText.Text = personalNamnText.ToString();
 
-            //  personalNamnText.Text = personalNamnText.ToString();
-
-            ///ToString(personalNamnText) = "hej";
+          
 
             int.Parse(personalPersonalIDText.Text);
 
@@ -153,16 +174,27 @@ namespace Hogskolan_Sarob
 
         }
 
+        /// <summary>
+        /// Uppdaterar listan med nya objekt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void lararLista_ListChanged(object sender, ListChangedEventArgs e)
         {
             MessageBox.Show(e.ListChangedType.ToString());
 
         }
 
+        /// <summary>
+        /// Raderar ett visst objekt i listan
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Delete_Click(object sender, EventArgs e)
         {
             lararLista.Clear();
 
         }
+        #endregion
     }
 }
